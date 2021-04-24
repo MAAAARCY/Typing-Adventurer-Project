@@ -11,16 +11,19 @@ namespace Enemies.Stage1
         [SerializeField] private GameObject DissolveBoss;
         [SerializeField] private GameObject Canvas;
         [SerializeField] private FadeInOutManager FIOM;
+        [SerializeField] private AudioClip[] SE;
 
         private Animator BossAnimator;
         private Animator UIAnimator;
+        private AudioSource SESource;
 
         void Start()
         {
-            BossAnimator = this.Boss.GetComponent<Animator>();
-            UIAnimator = this.Canvas.GetComponent<Animator>();
+            this.BossAnimator = this.Boss.GetComponent<Animator>();
+            this.UIAnimator = this.Canvas.GetComponent<Animator>();
+            this.SESource = this.GetComponent<AudioSource>();
 
-            BossAnimator.SetFloat("NormalSpeed", 0.0f);
+            this.BossAnimator.SetFloat("NormalSpeed", 0.0f);
 
             StartAnimation();
 
@@ -33,18 +36,23 @@ namespace Enemies.Stage1
 
             FIOM.StartFade(3);
             
-            await Task.Run(() => Thread.Sleep(4000));
+            await Task.Run(() => Thread.Sleep(4500));
             
             this.DissolveBoss.SetActive(false);
             this.Boss.SetActive(true);
-            Debug.Log(Boss.activeSelf);
-            BossAnimator.SetFloat("NormalSpeed", 1.0f);
+
+            this.BossAnimator.SetFloat("NormalSpeed", 1.0f);
             FIOM.StartFade(4);
-            UIAnimator.SetFloat("UIMoveSpeed", 1.0f);
+            this.SESource.PlayOneShot(this.SE[0]);
+
+            await Task.Run(() => Thread.Sleep(500));
+
+            this.SESource.PlayOneShot(this.SE[1]);
+            this.UIAnimator.SetFloat("UIMoveSpeed", 1.0f);
             
             await Task.Run(() => Thread.Sleep(4000));
             
-            UIAnimator.SetBool("UIStartAnimation", false);
+            this.UIAnimator.SetBool("UIStartAnimation", false);
         }
     }
 }
