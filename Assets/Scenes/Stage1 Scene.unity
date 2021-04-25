@@ -1190,6 +1190,7 @@ MonoBehaviour:
   BHM: {fileID: 33829789}
   RPQ: {fileID: 1322044560}
   RQS: {fileID: 1035580045}
+  WG: {fileID: 812035841}
   EA: {fileID: 65187499}
   Questions:
   - {fileID: 112052253}
@@ -1215,7 +1216,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2714950e4a1f4754f8d0a011d6b16992, type: 3}
   - {fileID: 8300000, guid: afd8f53c3dc117c40b493457ee5f697f, type: 3}
   - {fileID: 8300000, guid: 2d2c8dfd2b741c1419878f434f6cb777, type: 3}
-  wg: {fileID: 812035841}
 --- !u!4 &305014783
 Transform:
   m_ObjectHideFlags: 0
@@ -9223,6 +9223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FIOM: {fileID: 1665848906}
   PlayerHP: {fileID: 2085566889}
+  PlayerHPText: {fileID: 2048188847}
   RM: {fileID: 1431670097}
 --- !u!4 &1273379950
 Transform:
@@ -9570,8 +9571,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf7aa1b439100843a18e38c6e4a8d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnEffectTime: 2
-  pause: 1
+  SE:
+  - {fileID: 8300000, guid: 884b7f6b5fddddd40b9aa0522bebf54c, type: 3}
+  - {fileID: 8300000, guid: 1bb3231ec61de9e44a46f80f49a91607, type: 3}
   fadeIn:
     serializedVersion: 2
     m_Curve:
@@ -9596,9 +9598,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  SE:
-  - {fileID: 8300000, guid: 884b7f6b5fddddd40b9aa0522bebf54c, type: 3}
-  - {fileID: 8300000, guid: 1bb3231ec61de9e44a46f80f49a91607, type: 3}
 --- !u!135 &1431670090
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9828,7 +9827,6 @@ MonoBehaviour:
   BossHP: {fileID: 1564193447}
   Result: {fileID: 625222000}
   ResultText: {fileID: 1833490802}
-  GameClearBGM: {fileID: 8300000, guid: 23f6e89a7ac1f854bbf71b12df30a82a, type: 3}
 --- !u!1001 &1452367150
 PrefabInstance:
   m_ObjectHideFlags: 0
