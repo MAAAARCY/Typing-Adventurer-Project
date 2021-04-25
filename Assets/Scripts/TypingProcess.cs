@@ -9,29 +9,27 @@ using Enemies.Stage1;
 
 public class TypingProcess : MonoBehaviour
 {
-    //private GameObject Questions;
     [SerializeField] private BossHPManager BHM;
     [SerializeField] private RepositionQuestions RPQ;
     [SerializeField] private ResizeQuestionsScale RQS;
+    [SerializeField] private WordGenerator WG;
     [SerializeField] private EyeAttack EA;
-    public GameObject[] Questions; //問題
-    public GameObject[] questions;
-    public GameObject[] japanese; //日本語
-    public GameObject[] romaji; //ローマ字
-    public GameObject[] choice_mark;
-    //public BossProcess BP;
-    public AudioClip[] SE;
+    [SerializeField] private GameObject[] Questions; //問題
+    [SerializeField] private GameObject[] questions;
+    [SerializeField] private GameObject[] japanese; //日本語
+    [SerializeField] private GameObject[] romaji; //ローマ字
+    [SerializeField] private GameObject[] choice_mark;
+    [SerializeField] private AudioClip[] SE;
+
     private AudioSource SESource;
-    [SerializeField]  private WordGenerator wg; //WordGeneratorのインスタンス
+
     private string correct_romaji_log; //正しく打ったローマ字のログ
-    //private string color_change_str;
     private List<List<string>> romaji_list; //ローマ字の変換パターンリスト
     private List<List<string>> romaji_first_list; //ローマ字の変換パターンリストの一文字目
     private Dictionary<int, string[]> questions_dictionary; //問題のディレクトリ
     private int[] use_index_array; //現在使っているインデックス番号配列
     private int hiragana_index; //現在打っている文字のインデックス
     private int hiragana_length; //文字(ひらがな)の長さ
-    //private int romaji_index;
     private int romaji_count; //現在打っているローマ字の場所
     private int romaji_length; //現在打っている文字のローマ字の長さ
     private int select_question_number; //現在打っている問題番号
@@ -39,7 +37,30 @@ public class TypingProcess : MonoBehaviour
     private int total_count; //打った回数の合計
     private bool nn_flag; //んの例外処理に使用
     private bool question_select_flag; //どの問題を選択するかのフラグ
-    private bool damage_flag;
+    private bool ForciblyTerminateFlag;
+
+    public void ForciblyTerminateTyping()
+    {
+        ForciblyTerminateFlag = true;
+    }
+
+    public int[] GetTypoAndTotal()
+    {
+        int[] array = new int[2] { total_count, typo_count };
+        return array;
+    }
+
+    private void word_set(int select_number)
+    {
+        Debug.Log(questions_dictionary[select_number][1]);
+        romaji_list = WG.romaji_list(questions_dictionary[select_number][1]); //リスト作成
+        use_index_array = new int[20] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        romaji_count = 0;
+        nn_flag = false;
+        hiragana_length = questions_dictionary[select_number][1].Length;
+        //小文字の文字数のみ削除（WordGeneratorの関係で）
+        hiragana_length -= komoji_counter(questions_dictionary[select_number][1]);
+    }
 
     private int komoji_counter(string hiragana)
     {
@@ -100,8 +121,6 @@ public class TypingProcess : MonoBehaviour
             }
             if (hiragana_index > i) color_change_str += r_list[i][array[i]];
             if (hiragana_index < i) change_str += r_list[i][array[i]];
-            
-            //change_str += r_list[i][array[i]];
         }
 
         this.romaji[select_question_number].GetComponent<Text>().text = $"<color=#999999>{color_change_str}</color><color=#ffffff>{change_str}</color>";
@@ -113,27 +132,26 @@ public class TypingProcess : MonoBehaviour
         correct_romaji_log = ""; //現在から一つ前に打った正解のローマ字文字列
         questions_dictionary = new Dictionary<int, string[]>();
         question_select_flag = true;
-        damage_flag = false;
+        ForciblyTerminateFlag = false;
 
         romaji_first_list = new List<List<string>>();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < Questions.Length; i++)
         {
-            //wg = new WordGenerator();
-            string[] jphi = wg.japanese_and_hiragana(); //表示する日本語とひらがな
+            string[] jphi = WG.japanese_and_hiragana(); //表示する日本語とひらがな
 
             List<List<string>> list = new List<List<string>>();
-            list = wg.romaji_list(jphi[1]);
+            list = WG.romaji_list(jphi[1]);
 
             romaji_first_list.Add(new List<string>());
-            romaji_first_list[i] = wg.romaji_first_list(list);
+            romaji_first_list[i] = WG.romaji_first_list(list);
             
             for (int j = 0; j > romaji_first_list[i].Count; j++)
             {
                 Debug.Log(romaji_first_list[i][j]);
             }
             
-            romaji_str = wg.romaji_str(list); //ローマ字生成
+            romaji_str = WG.romaji_str(list); //ローマ字生成
             Debug.Log(romaji_str);
             this.japanese[i].GetComponent<Text>().text = jphi[0];
             this.romaji[i].GetComponent<Text>().text = romaji_str;
@@ -151,31 +169,7 @@ public class TypingProcess : MonoBehaviour
         select_question_number = 0;
         nn_flag = false;
 
-        //Director.Change_Image_Scale();
         RQS.Resize();
-    }
-
-    public void Damage_Player()
-    {
-        damage_flag = true;
-    }
-
-    private void word_set(int select_number)
-    {
-        Debug.Log(questions_dictionary[select_number][1]);
-        romaji_list = wg.romaji_list(questions_dictionary[select_number][1]); //リスト作成
-        use_index_array = new int[20] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        romaji_count = 0;
-        nn_flag = false;
-        hiragana_length = questions_dictionary[select_number][1].Length;
-        //小文字の文字数のみ削除（WordGeneratorの関係で）
-        hiragana_length -= komoji_counter(questions_dictionary[select_number][1]);
-    }
-
-    public int[] GetTypoAndTotal()
-    {
-        int[] array = new int[2] { total_count, typo_count };
-        return array;
     }
 
     void Start()
@@ -188,17 +182,16 @@ public class TypingProcess : MonoBehaviour
 
         typo_count = 0;
         total_count = 0;
-        //Debug.Log(romaji_first_list.Count);
     }
 
     void Update()
     {
         char input_c;
 
-        if (damage_flag)
+        if (ForciblyTerminateFlag)
         {
             init();
-            damage_flag = false;
+            ForciblyTerminateFlag = false;
         }
 
         if (Input.anyKeyDown)
@@ -228,7 +221,6 @@ public class TypingProcess : MonoBehaviour
                     }
                     
                     Char.ToLower(input_c);
-                    //Debug.Log(input_c);
                     bool miss_flag = true;
 
                     //問題選択処理
@@ -270,7 +262,6 @@ public class TypingProcess : MonoBehaviour
                             Debug.Log("例外発生！");
                             use_index_array[hiragana_index - 1] = 1;
                             romaji_changer(romaji_list, use_index_array);
-                            //correct_romaji_log += 'n';
                             miss_flag = false;
                             nn_flag = false;
                             break;
@@ -286,7 +277,6 @@ public class TypingProcess : MonoBehaviour
                             this.SESource.PlayOneShot(this.SE[0]);
                             total_count++;
                             Debug.Log("OK");
-                            //Debug.Log($"{input_c},{romaji_list[hiragana_index][romaji_index]},{correct_romaji_log}");
                             //一つの文字を入力し終えた時の処理
                             if(romaji_list[hiragana_index][romaji_index].Length - 1 == romaji_count)
                             {
@@ -295,7 +285,6 @@ public class TypingProcess : MonoBehaviour
                                     if (romaji_list[hiragana_index][romaji_index].Substring(0, romaji_count + 1) == correct_romaji_log + input_c)
                                     {
                                         miss_flag = false;
-                                        //correct_romaji_log = "";
                                         correct_romaji_log += input_c;
                                         use_index_array[hiragana_index] = romaji_index;
                                         romaji_changer(romaji_list, use_index_array);
@@ -340,7 +329,7 @@ public class TypingProcess : MonoBehaviour
                                 {
                                     miss_flag = false;
                                     correct_romaji_log += input_c;
-                                    Debug.Log(correct_romaji_log);
+                                    //Debug.Log(correct_romaji_log);
                                     use_index_array[hiragana_index] = romaji_index;
                                     romaji_changer(romaji_list, use_index_array);
                                     romaji_count++;
@@ -351,8 +340,7 @@ public class TypingProcess : MonoBehaviour
                                 {
                                     if (romaji_list[hiragana_index][romaji_index].Substring(0,romaji_count+1) == correct_romaji_log + input_c)
                                     {
-                                        Debug.Log($"{romaji_list[hiragana_index][romaji_index].Substring(0, romaji_count + 1)},{correct_romaji_log + input_c}");
-                                        //use_index_array[hiragana_index] = romaji_index;
+                                        //Debug.Log($"{romaji_list[hiragana_index][romaji_index].Substring(0, romaji_count + 1)},{correct_romaji_log + input_c}");
                                         miss_flag = false;
                                         correct_romaji_log += input_c;
                                         use_index_array[hiragana_index] = romaji_index;
@@ -393,11 +381,9 @@ public class TypingProcess : MonoBehaviour
                             }
                             if (q_i == questions_dictionary.Count - 1)
                             {
-                                //BP.SwitchFlag();
-                                //QP.ProvideQuestions();
                                 EA.DrillAttackForcedEnd();
                                 EA.ArrowAttackForcedEnd();
-                                if (!(damage_flag)) init();
+                                if (!(ForciblyTerminateFlag)) init();
                             }
                         }
 

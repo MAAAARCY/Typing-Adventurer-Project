@@ -16,7 +16,7 @@ namespace Managers
         public void ResetQuestions()
         {
             EAA.AttackChange();
-            TP.Damage_Player();
+            TP.ForciblyTerminateTyping();
 
             for (int q_i = 0; q_i < Questions.Length; q_i++)
             {
