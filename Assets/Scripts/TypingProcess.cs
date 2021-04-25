@@ -128,13 +128,8 @@ public class TypingProcess : MonoBehaviour
             romaji_first_list.Add(new List<string>());
             romaji_first_list[i] = wg.romaji_first_list(list);
             
-            for (int j = 0; j > romaji_first_list[i].Count; j++)
-            {
-                Debug.Log(romaji_first_list[i][j]);
-            }
-            
             romaji_str = wg.romaji_str(list); //ローマ字生成
-            Debug.Log(romaji_str);
+
             this.japanese[i].GetComponent<Text>().text = jphi[0];
             this.romaji[i].GetComponent<Text>().text = romaji_str;
 
