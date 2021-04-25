@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DissolveEffect : MonoBehaviour {
+public class DissolveEffect : MonoBehaviour 
+{
+    [SerializeField] private AudioClip[] SE;
+    [SerializeField] private AnimationCurve fadeIn;
 
     private bool StartFlag;
-    public float spawnEffectTime = 2;
-    public float pause = 1;
-    public AnimationCurve fadeIn;
-    public AudioClip[] SE;
+    private float spawnEffectTime = 2;
+    private float pause = 1;
     private AudioSource SESource;
 
     ParticleSystem ps;
@@ -19,7 +20,7 @@ public class DissolveEffect : MonoBehaviour {
 
     int shaderProperty;
 
-	void Start ()
+    void Start()
     {
         shaderProperty = Shader.PropertyToID("_cutoff");
         _renderer = GetComponent<Renderer>();
@@ -28,7 +29,7 @@ public class DissolveEffect : MonoBehaviour {
         this.SESource = this.GetComponent<AudioSource>();
     }
 	
-	void Update ()
+    void Update()
     {
         if (countup > 3.0f)
         {
@@ -43,7 +44,6 @@ public class DissolveEffect : MonoBehaviour {
             }
             else
             {
-                //this.Gankyuu_obj_for_animation.SetActive(false);
                 timer = 0;
                 StartFlag = false;
             }

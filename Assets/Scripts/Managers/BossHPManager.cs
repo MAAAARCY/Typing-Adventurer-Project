@@ -7,7 +7,6 @@ namespace Managers
     public class BossHPManager : MonoBehaviour
     {
         [SerializeField] private FadeInOutManager FIOM;
-        //[SerializeField] private BossProcess BP;
         [SerializeField] private BattleBGMManager BM;
         [SerializeField] private Image BossHP;
         [SerializeField] private ResultManager RM;
@@ -15,12 +14,11 @@ namespace Managers
 
         public void DecreaseBossHP()
         {
-            BossHP.fillAmount -= 0.1f;
+            BossHP.fillAmount -= 0.05f;
 
             if (BossHP.fillAmount == 0.0f)
             {
                 BM.BGMStop();
-                //BP.FinishAnimation();
                 EA.AllAttackEnd();
                 RM.ResetUI();
             }

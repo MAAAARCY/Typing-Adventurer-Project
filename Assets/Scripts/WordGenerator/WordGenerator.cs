@@ -1,22 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using System;
 
 public class WordGenerator : MonoBehaviour
 {
-    [SerializeField]
-    private WordDataBase WordDataBase;
-    //private List<List<string>> romaji_first_list;
+    [SerializeField] private WordDataBase WordDataBase;
 
     public string[] japanese_and_hiragana()
     {
-        //Random r = new System.Random();
-        //int n = r.Next(0,76);
         int n = Random.Range(0, 100);
-        //string[] s = { wJP[n][0], wJP[n][1] };
         string[] s = { WordDataBase.GetWordDataLists()[n].GetShowName(), WordDataBase.GetWordDataLists()[n].GetHideName() };
-        //num++;
+
         return s;
     }
 
@@ -34,9 +28,6 @@ public class WordGenerator : MonoBehaviour
             string key_to_string = jp[jp_i].ToString(); //現在の文字
             string next_key_to_string = ""; //次の文字
             bool key_flag = false;
-            //bool xtu_flag = false;
-
-            //Console.WriteLine(jp.Substring(jp_i,1));
             
             //zya→zixyaなどの例外処理
             if(jp_i+1 != jp.Length)
@@ -80,14 +71,6 @@ public class WordGenerator : MonoBehaviour
                             }
                         }
                     }
-                    /*
-                    foreach(string element in list[jp_i-convert_delta])
-                    {
-                        //Console.Write($"{element},");
-                        Debug.Log($"{element},");
-                    }
-                    */
-                    //Console.WriteLine();
                     convert_delta++;
                     jp_i++; //この処理がないとgyouzaがgyoxyouzaになってしまう
                     xtu_flag = false;
@@ -108,7 +91,6 @@ public class WordGenerator : MonoBehaviour
                 case "っ":
                     if(jp_i+1 != jp.Length)
                     {
-                        //list[jp_i-convert_delta].Add(mp[next_key_to_string][0][0].ToString());
                         for (int i = 0; i < mp[next_key_to_string].Length; i++)
                         {
                             list[jp_i - convert_delta].Add(mp[next_key_to_string][i][0].ToString() + mp[next_key_to_string][i][0].ToString());
@@ -148,15 +130,6 @@ public class WordGenerator : MonoBehaviour
                     xtu_flag = false;
                 }
             }
-            /*
-            foreach(string element in list[jp_i-convert_delta])
-            {
-                //Console.Write($"{element},");
-                Debug.Log($"{element},");
-            }
-            */
-            //Console.WriteLine();
-            
         }
 
         return list;

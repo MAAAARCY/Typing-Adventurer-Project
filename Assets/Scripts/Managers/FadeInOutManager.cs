@@ -10,6 +10,7 @@ namespace Managers
         [SerializeField] private Text GameStartText;
         [SerializeField] private Text GameClearText;
         [SerializeField] private Text DangerText;
+
         private int NowStatus;
         private float alfa;
         private float fade_speed;

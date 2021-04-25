@@ -15,20 +15,14 @@ namespace Managers
         [SerializeField] private GameObject BossHP;
         [SerializeField] private GameObject Result;
         [SerializeField] private Text ResultText;
-        [SerializeField] private AudioClip GameClearBGM;
-        private AudioSource BGMSource;
 
         void Start()
         {
-            this.BGMSource = this.GetComponent<AudioSource>();
-            this.BGMSource.clip = this.GameClearBGM;
             this.Result.SetActive(false);
-            BGMSource.Stop();
         }
 
         public void ShowClearResult()
         {
-            //BM.BGMStop();
             FIOM.StartFade(5);
             this.Boss.SetActive(false);
             this.Boss_for_animation.SetActive(false);
@@ -36,7 +30,6 @@ namespace Managers
             int[] result = TP.GetTypoAndTotal();
             this.ResultText.text = $" 総タイプ回数：{result[0]}\nミスタイプ数：{result[1]}\nEsc：タイトル画面へ　Space：ステージセレクト画面へ　Enter：リトライ";
             this.Result.SetActive(true);
-            //this.BGMSource.Play();
             BM.GameClearBGMPlay();
         }
 

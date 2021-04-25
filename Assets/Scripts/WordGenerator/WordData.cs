@@ -5,11 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WordData", menuName = "CreateWordData")]
 public class WordData : ScriptableObject
 {
-    [SerializeField]
-    private string ShowName;
+    [SerializeField] private string ShowName;
 
-    [SerializeField]
-    private string HideName;
+    [SerializeField] private string HideName;
 
     public string GetShowName()
     {

@@ -16,9 +16,4 @@ public class WordDataManager : MonoBehaviour
             Debug.Log(WordDataBase.GetWordDataLists()[i].GetShowName() + ": " + WordDataBase.GetWordDataLists()[i].GetHideName());
         }
     }
-
-    void Update()
-    {
-        
-    }
 }

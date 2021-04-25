@@ -6,8 +6,7 @@ using UnityEngine;
 public class WordDataBase : ScriptableObject
 {
 
-    [SerializeField]
-    private List<WordData> WordDataLists = new List<WordData>();
+    [SerializeField] private List<WordData> WordDataLists = new List<WordData>();
 
     public List<WordData> GetWordDataLists()
     {

@@ -7,7 +7,8 @@ namespace Managers
         [SerializeField] private GameObject[] Questions;
         [SerializeField] private GameObject Canvas;
         [SerializeField] private GameObject Boss;
-        private Animator ui_animator;
+
+        private Animator UIAnimator;
 
         void Start()
         {
@@ -16,17 +17,10 @@ namespace Managers
                 this.Questions[i].SetActive(false);
             }
 
-            ui_animator = this.Canvas.GetComponent<Animator>();
+            UIAnimator = this.Canvas.GetComponent<Animator>();
 
-            ui_animator.SetBool("UIStartAnimation", true);
-            ui_animator.SetFloat("UIMoveSpeed", 0.0f);
-            /*
-            g_animator = this.Gankyu.GetComponent<Animator>();
-            b_animator = this.Boss.GetComponent<Animator>();
-
-            g_animator.SetFloat("NormalSpeed", 0.0f);
-            */
-            //this.Boss.SetActive(false);
+            UIAnimator.SetBool("UIStartAnimation", true);
+            UIAnimator.SetFloat("UIMoveSpeed", 0.0f);
         }
     }
 }
