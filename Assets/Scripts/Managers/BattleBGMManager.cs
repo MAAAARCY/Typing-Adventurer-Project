@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Managers
 {
-    public class BattleBGMManager : MonoBehaviour
+    public class BattleBGMManager : SettingManager
     {
         [SerializeField] private AudioClip[] BGM;
         private AudioSource BGMSource;
@@ -11,20 +11,21 @@ namespace Managers
         {
             this.BGMSource = this.GetComponent<AudioSource>();
             this.BGMSource.clip = BGM[0];
-            BGMSource.Stop();
+            this.BGMSource.Stop();
+            this.BGMSource.volume = SettingManager.BGMVolume;
         }
 
         public void BGMStart()
         {
-            BGMSource.Play();
+            this.BGMSource.Play();
         }
         public void BGMStop()
         {
-            BGMSource.Stop();
+            this.BGMSource.Stop();
         }
         public void GameClearBGMPlay()
         {
-            BGMSource.PlayOneShot(this.BGM[1]);
+            this.BGMSource.PlayOneShot(this.BGM[1]);
         }
     }
 }

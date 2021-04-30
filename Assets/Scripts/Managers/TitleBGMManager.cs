@@ -19,12 +19,11 @@ namespace Managers
             this.BGMSource.volume = SettingManager.BGMVolume;
 
             BGMVolume = SettingManager.BGMVolume;
-            Debug.Log(BGMVolume);
 
             if (DontReloadFlag)
             {
                 DontDestroyOnLoad(this);
-                BGMSource.Play();
+                this.BGMSource.Play();
                 DontReloadFlag = false;
             }
         }
@@ -33,19 +32,19 @@ namespace Managers
         {
             if (!(DontReloadFlag) && SceneManager.GetActiveScene().name == "Stage1 Scene" && isCalledOnce)
             {
-                BGMSource.Stop();
+                this.BGMSource.Stop();
                 isCalledOnce = false;
                 Debug.Log("BGM1í‚é~");
             }
             if (!(DontReloadFlag) && SceneManager.GetActiveScene().name != "Stage1 Scene" && !(isCalledOnce))
             {
-                BGMSource.Play();
+                this.BGMSource.Play();
                 isCalledOnce = true;
                 Debug.Log("BGMçƒäJén");
             }
             if (BGMSource.volume != SettingManager.BGMVolume)
             {
-                BGMSource.volume = SettingManager.BGMVolume;
+                this.BGMSource.volume = SettingManager.BGMVolume;
             }
         }
     }

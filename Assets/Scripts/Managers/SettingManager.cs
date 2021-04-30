@@ -12,16 +12,16 @@ namespace Managers
 
         void Start()
         {
-            BGMBar.value = TitleBGMManager.BGMVolume;
+            this.BGMBar.value = TitleBGMManager.BGMVolume;
         }
 
         void Update()
         {
             if (SceneManager.GetActiveScene().name == "Setting Scene")
             {
-                if (BGMVolume != BGMBar.value)
+                if (BGMVolume != this.BGMBar.value)
                 {
-                    BGMVolume = BGMBar.value;
+                    BGMVolume = this.BGMBar.value;
                 }
             }
         }
