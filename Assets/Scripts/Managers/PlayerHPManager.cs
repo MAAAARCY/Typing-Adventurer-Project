@@ -9,8 +9,15 @@ namespace Managers
         [SerializeField] private Image PlayerHP;
         [SerializeField] private Text PlayerHPText;
         [SerializeField] private ResultManager RM;
+        [SerializeField] private AudioClip SE;
 
+        private AudioSource SESource;
         private int NowHP = 100;
+
+        void Start()
+        {
+            this.SESource = this.GetComponent<AudioSource>();
+        }
 
         public void DecreasePlayerHP()
         {
@@ -18,6 +25,7 @@ namespace Managers
             NowHP = NowHP - 10;
             PlayerHPText.text = $"{NowHP}/100";
             FIOM.StartFade(1);
+            SESource.PlayOneShot(SE);
 
             if (PlayerHP.fillAmount == 0.0f)
             {

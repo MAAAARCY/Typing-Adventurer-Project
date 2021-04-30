@@ -32,7 +32,6 @@ namespace Enemies.Stage1
             BossAnimator.SetBool("attack1", false);
             ArrowAnimator.SetBool("attack1_arrow", false);
             UIAnimator.SetBool("attack1", false);
-            //this.Arrow.SetActive(false);
             PHM.DecreasePlayerHP();
             RQM.ResetQuestions();
         }
@@ -42,7 +41,6 @@ namespace Enemies.Stage1
             BossAnimator.SetBool("attack1", false);
             ArrowAnimator.SetBool("attack1_arrow", false);
             UIAnimator.SetBool("attack1", false);
-            //this.Arrow.SetActive(false);
             RQM.ResetQuestions();
         }
 
@@ -62,7 +60,6 @@ namespace Enemies.Stage1
             BossAnimator.SetBool("attack2", false);
             DrillAnimator.SetBool("attack2_drill", false);
             UIAnimator.SetBool("attack2", false);
-            //this.Drill.SetActive(false);
             PHM.DecreasePlayerHP();
             RQM.ResetQuestions();
         }
