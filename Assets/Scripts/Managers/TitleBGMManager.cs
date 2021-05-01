@@ -10,15 +10,10 @@ namespace Managers
         private static bool DontReloadFlag = true;
         private static bool isCalledOnce = true;
 
-        protected static float BGMVolume;
-
         void Start()
         {
             this.BGMSource = this.GetComponent<AudioSource>();
             this.BGMSource.clip = BGM;
-            this.BGMSource.volume = SettingManager.BGMVolume;
-
-            BGMVolume = SettingManager.BGMVolume;
 
             if (DontReloadFlag)
             {
@@ -41,10 +36,6 @@ namespace Managers
                 this.BGMSource.Play();
                 isCalledOnce = true;
                 Debug.Log("BGMçƒäJén");
-            }
-            if (BGMSource.volume != SettingManager.BGMVolume)
-            {
-                this.BGMSource.volume = SettingManager.BGMVolume;
             }
         }
     }

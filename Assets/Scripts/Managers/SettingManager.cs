@@ -7,13 +7,8 @@ namespace Managers
     public class SettingManager : MonoBehaviour
     {
         [SerializeField] private Slider BGMBar;
-
-        protected static float BGMVolume = 0.5f;
-
-        void Start()
-        {
-            this.BGMBar.value = TitleBGMManager.BGMVolume;
-        }
+        private static bool isCallOnce = true;
+        private static float BGMVolume = 0.0f;
 
         void Update()
         {

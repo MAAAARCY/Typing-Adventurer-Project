@@ -12,7 +12,6 @@ namespace Managers
             this.BGMSource = this.GetComponent<AudioSource>();
             this.BGMSource.clip = BGM[0];
             this.BGMSource.Stop();
-            this.BGMSource.volume = SettingManager.BGMVolume;
         }
 
         public void BGMStart()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4094922, g: 0.4097489, b: 0.43566507, a: 1}
+  m_IndirectSpecularColor: {r: 0.4081028, g: 0.40896717, b: 0.4347216, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -346,7 +346,8 @@ AudioSource:
   m_GameObject: {fileID: 294813100}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6785724672991314472, guid: 606bdb031a6f24f4586c9ba6c72453fe,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -787,7 +788,8 @@ AudioSource:
   m_GameObject: {fileID: 765238166}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6785724672991314472, guid: 606bdb031a6f24f4586c9ba6c72453fe,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1044,7 +1046,8 @@ AudioSource:
   m_GameObject: {fileID: 996910682}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6785724672991314472, guid: 606bdb031a6f24f4586c9ba6c72453fe,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1630,7 +1633,8 @@ AudioSource:
   m_GameObject: {fileID: 1782381176}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6785724672991314472, guid: 606bdb031a6f24f4586c9ba6c72453fe,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1906,10 +1910,11 @@ AudioSource:
   m_GameObject: {fileID: 2095090532}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3394703105688286446, guid: 606bdb031a6f24f4586c9ba6c72453fe,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2019,4 +2024,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c8d6cf065bdb7448df56d2fc090589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BGMBar: {fileID: 0}
   BGM: {fileID: 8300000, guid: ff3a94e13e89d6c41abe342ee8eff445, type: 3}
