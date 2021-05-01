@@ -1,5 +1,4 @@
-using System.Threading;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Managers;
 
@@ -30,14 +29,14 @@ namespace Enemies.Stage1
             this.Boss.SetActive(false);
         }
 
-        private async Task StartAnimation()
+        private async UniTask StartAnimation()
         {
-            await Task.Run(() => Thread.Sleep(1100));
+            await UniTask.Delay((int)(1100));
 
             FIOM.StartFade(3);
-            
-            await Task.Run(() => Thread.Sleep(4500));
-            
+
+            await UniTask.Delay((int)(4500));
+
             this.DissolveBoss.SetActive(false);
             this.Boss.SetActive(true);
 
@@ -45,13 +44,13 @@ namespace Enemies.Stage1
             FIOM.StartFade(4);
             this.SESource.PlayOneShot(this.SE[0]);
 
-            await Task.Run(() => Thread.Sleep(500));
+            await UniTask.Delay((int)(500));
 
             this.SESource.PlayOneShot(this.SE[1]);
             this.UIAnimator.SetFloat("UIMoveSpeed", 1.0f);
-            
-            await Task.Run(() => Thread.Sleep(4000));
-            
+
+            await UniTask.Delay((int)(4000));
+
             this.UIAnimator.SetBool("UIStartAnimation", false);
         }
     }

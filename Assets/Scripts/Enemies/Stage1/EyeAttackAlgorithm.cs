@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Questions;
 
@@ -93,9 +92,9 @@ namespace Enemies.Stage1
             }
         }
 
-        private async Task FirstMotion()
+        private async UniTask FirstMotion()
         {
-            await Task.Run(() => Thread.Sleep(3000));
+            await UniTask.Delay((int)(3000));
             AttackStatus = (Attack)Random.Range(1, 3);
             Debug.Log($"Œ»İ‚ÌUŒ‚:{AttackStatus}");
             AttackBeginFlag = true;
