@@ -10270,7 +10270,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Stage1 Eye
+  m_Text: Stage1
 --- !u!222 &1598666543
 CanvasRenderer:
   m_ObjectHideFlags: 0
